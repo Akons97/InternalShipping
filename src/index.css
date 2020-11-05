@@ -1,13 +1,53 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("./img/bobackground.jpg");
+  background-size: cover;
+}
+
+body,
+html {
+  height: 100%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.loginPage {
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 500px;
+  padding: 3% 5% 1% 5%;
+  border-radius: 5%;
+}
+
+.logo {
+  width: 100%;
+  padding-bottom: 10%;
+}
+
+.formContainer {
+  padding-top: 14%;
+  box-sizing: border-box;
+}
+
+.red {
+  color: #ff0000;
+}
+
+.btn-black {
+  background-color: #000000 !important;
+  border-color: #000000 !important;
+  color: #ffffff !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .loginPage {
+    width: 90%;
+  }
 }
