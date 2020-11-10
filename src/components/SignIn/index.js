@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom';
-import {compose} from 'recompose';
-import {SignUpLink} from '../SignUp';
 import {withFirebase} from '../Firebase';
-import {PasswordForgetLink} from '../PasswordForget';
 import * as ROUTES from '../../constants/routes';
 
 import logo from './../../img/bologo.png';
@@ -11,8 +8,6 @@ import logo from './../../img/bologo.png';
 const SignInPage = () => (
     <div>
         <SignInForm />
-        {/* <PasswordForgetLink /> */}
-        {/* <SignUpLink /> */}
     </div>
 );
 
@@ -36,7 +31,7 @@ onSubmit = event => {
         .doSignInWithEmailAndPassword(email, password)
         .then(() => {
             this.setState({...INITIAL_STATE});
-            this.props.history.push(ROUTES.HOME);
+            this.props.history.push(ROUTES.SHIPPING);
         })
         .catch(error => {
             this.setState({error});
@@ -76,10 +71,7 @@ onSubmit = event => {
     }
 }
 
-const SignInForm = compose(
-    withRouter,
-    withFirebase
-)(SignInFormBase);
+const SignInForm = withRouter(withFirebase(SignInFormBase));
 
 export default SignInPage;
 
