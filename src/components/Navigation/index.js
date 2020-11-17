@@ -2,34 +2,30 @@ import React from 'react';
 import {Link} from 'react-router-dom';
 import SignOutButton from '../SignOut';
 import * as ROUTES from '../../constants/routes';
+import { render } from '@testing-library/react';
 
 const Navigation = ({authUser}) => (
 <div>
-    {authUser ? <NavigationAuth /> : <NavigationNonAuth />}
+    {authUser ? <NavigationAuth /> : null}
 </div>
 )
-
 const NavigationAuth = () => (
-        <ul>
-            <li>
-                <Link to={ROUTES.LANDING}>Landing</Link>
-            </li>
-            <li>
-                <SignOutButton />
-            </li>
-        </ul>
-);
-
-const NavigationNonAuth = () => (
-    <ul>
-        <li>
-            <Link to={ROUTES.LANDING}>Landing</Link>
-        </li>
-        <li>
-            <Link to={ROUTES.SIGN_IN}>Sign In</Link>
-        </li>
+    <div className="navbar navbar-expand-md navig">
+    <ul class="navbar-nav ml-auto">
+    <li class="nav-item">
+      <Link className="btn btn-black" to={ROUTES.SHIPMENTS}>Shipping inquiries</Link>
+    </li>
+    <li>&nbsp;&nbsp;</li>
+    <li class="nav-item">
+      <Link className="btn btn-black" to={ROUTES.SHIPPING}>Add Inquiry</Link>
+      </li>
+      <li>&nbsp;&nbsp;</li>
+    <li class="nav-item">
+        <SignOutButton/>
+    </li>
     </ul>
-);
+    </div>
 
+);
  
 export default Navigation

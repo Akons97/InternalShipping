@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 import Navigation from '../Navigation';
-import LandingPage from '../Landing';
 import SignUpPage from '../SignUp';
 import SignInPage from '../SignIn';
 import ShippingPage from '../Shipping';
+import Shipments from '../Shipments';
 import {withFirebase} from '../Firebase';
 
 import * as ROUTES from '../../constants/routes'; 
@@ -35,12 +35,10 @@ class App extends Component {
 
     render(){
     if(this.state.authUser){
-        comp = LandingPage;
-        console.log(this.state.authUser);
+        comp = Shipments;
         }
         else{
         comp = SignInPage;
-        console.log(this.state.authUser);
         };
     
         return(
@@ -51,6 +49,7 @@ class App extends Component {
             <Route path={ROUTES.SIGN_UP} component={SignUpPage} />
             <Route path={ROUTES.SIGN_IN} component={SignInPage} />
             <Route path={ROUTES.SHIPPING} component={ShippingPage} />
+            <Route path={ROUTES.SHIPMENTS} component={Shipments} />
             </div>
         </Router>
 );

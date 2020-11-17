@@ -9,7 +9,7 @@ const SignOutButton = ({firebase}) => {
 
 
     return ( 
-        <button type='button' onClick={signout}>
+        <button className="btn btn-black" type='button' onClick={signout}>
             Sign Out
         </button>
     );

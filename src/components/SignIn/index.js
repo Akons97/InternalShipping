@@ -31,7 +31,7 @@ onSubmit = event => {
         .doSignInWithEmailAndPassword(email, password)
         .then(() => {
             this.setState({...INITIAL_STATE});
-            this.props.history.push(ROUTES.SHIPPING);
+            this.props.history.push(ROUTES.SHIPMENTS);
         })
         .catch(error => {
             this.setState({error});
@@ -39,7 +39,6 @@ onSubmit = event => {
 
     event.preventDefault();
     };
-
     onChange = event => {
         this.setState({[event.target.name]: event.target.value});
     };

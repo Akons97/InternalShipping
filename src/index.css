@@ -19,11 +19,43 @@ code {
     monospace;
 }
 
+.navig a,
+.navig button {
+  font-size: 12px;
+}
+
+.shipmentsTable {
+  background-color: rgba(200, 200, 200, 0.4);
+  box-shadow: 10px 10px 5px black;
+  border-collapse: collapse;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.cont {
+  padding-top: 2%;
+}
+
+.shipmentsTable th {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.shipmentsTable td,
+.shipmentsTable th {
+  padding: 8px;
+}
+
+.shipmentsTable tr:not(:first-child):hover {
+  background-color: #000000 !important;
+  color: #ffffff !important;
+}
+
 .loginPage {
-  background-color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 1);
   width: 500px;
+  box-shadow: 10px 10px 5px;
   padding: 3% 5% 1% 5%;
-  border-radius: 5%;
 }
 
 .logo {
@@ -44,6 +76,7 @@ code {
   background-color: #000000 !important;
   border-color: #000000 !important;
   color: #ffffff !important;
+  border-radius: 0 !important;
 }
 
 @media only screen and (max-width: 600px) {
