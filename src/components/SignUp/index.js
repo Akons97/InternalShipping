@@ -5,7 +5,7 @@ import * as ROUTES from '../../constants/routes';
 
 const SignUpPage = () => {
     return ( <div>
-        <h1>SignUp</h1>
+        <h1 className="text-white">SignUp</h1>
         <SignUpForm />
     </div> );
 }
@@ -31,17 +31,8 @@ class SignUpFormBase extends Component{
         this.props.firebase
         .doCreateUserWithEmailAndPassword(email, passwordOne)
         .then(authUser => {
-
-            return this.props.firebase
-                .user(authUser.user.uid)
-                .set({
-                    username,
-                    email
-                });
-            })
-            .then(() => {
                 this.setState({ ...INITIAL_STATE });
-                this.props.history.push(ROUTES.SHIPPING);
+                this.props.history.push(ROUTES.SHIPMENTS);
             })
         .catch(error => {
             this.setState({error});
@@ -75,7 +66,7 @@ class SignUpFormBase extends Component{
                 <input name='passwordOne' value={passwordOne} onChange={this.onChange} type='password' placeholder='Password' />
                 <input name='passwordTwo' value={passwordTwo} onChange={this.onChange} type='password' placeholder='Confirm Password' />
                 <button disabled={isInvalid} type='submit'>Sign Up</button>
-                {error && <p>{error.message}</p>}
+                {error && <p className="text-danger">{error.message}</p>}
             </form>
         );
     }

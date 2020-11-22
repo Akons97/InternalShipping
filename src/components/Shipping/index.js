@@ -87,7 +87,7 @@ class ShippingPageFormBase extends Component {
                             <option value='<1kg'> &lt; 1kg</option>
                             <option value='<5kg'> &lt; 5kg</option>
                             <option value='<10kg'> &lt; 10kg</option>
-                            <option value='<11kg'> &gt; 10kg</option>
+                            <option value='>10kg'> &gt; 10kg</option>
                         </select>
                         </div>
                     <div className="form-group">

@@ -3,14 +3,15 @@ import { withFirebase } from '../Firebase';
 import {Link} from 'react-router-dom';
 import * as ROUTES from '../../constants/routes';
 import 'firebase/firestore'
-
+import _ from 'lodash';
 
 class Shipments extends Component {
     constructor(props){
         super(props);
 
         this.state = {
-            shipments: [ ]
+            shipments: [ ],
+            sortColumn: {feature: 'date', order: 'asc'}
         }
     }
     
@@ -56,17 +57,43 @@ class Shipments extends Component {
         return urgent;
     }
 
+    onSort = (feature) =>{
+        const sortColumn = {...this.state.sortColumn}
+        if(sortColumn.feature === feature)
+            sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc';
+        else{
+            sortColumn.feature = feature;
+            sortColumn.order = 'asc';
+        }
+        this.setState({ sortColumn: {feature: sortColumn.feature, order: sortColumn.order}})
+    }
+
+    renderSortIcon = (feature) => {
+        const sc = {...this.state.sortColumn}
+        if (sc.order === 'asc') return <i className="fa fa-sort-asc" aria-hidden="true" />
+        return <i className="fa fa-sort-desc" aria-hidden="true" />
+    }
+
+
     render() {
+
+        const {
+            shipments,
+            sortColumn
+        } = this.state;
+
+        const sorted = _.orderBy(this.state.shipments, [sortColumn.feature], [sortColumn.order]);
+        
         return (
                 <div className="text-center cont">
                     <table className="shipmentsTable text-white">
                         <tbody>
                         <tr className="text-center headline">
-                            <th colspan="8"><h1>List of inquiries for shipping</h1></th>
+                            <th colSpan="8"><h1>List of inquiries for shipping</h1></th>
                         </tr>
                         <tr>
                             <th>Item</th>
-                            <th>Delivery until</th>
+                            <th className="clickable" onClick={() => this.onSort('date')}>Delivery until{this.renderSortIcon('date')}</th>
                             <th>From</th>
                             <th>To</th>
                             <th>Weight</th>
@@ -74,8 +101,8 @@ class Shipments extends Component {
                             <th>Contact</th>
                             <th></th>
                         </tr>
-               {this.state.shipments.map(sh =>
-                    <tr key={sh.id} style={this.isUrgent(sh) ? {color: '#dc3545', backgroundColor: '#fff'} : {color: 'white'}}>
+               {sorted.map(sh =>
+                    <tr key={sh.id} style={this.isUrgent(sh) ? {color: '#dc3545', backgroundColor: '#ddd'} : {color: 'white'}}>
                         <td>{sh.title}</td>
                         <td>{sh.date}</td>
                         <td>{sh.from}</td>
@@ -84,7 +111,6 @@ class Shipments extends Component {
                         <td>{sh.size}</td>
                         <td>{sh.email}</td>
                         <td className="text-center">{this.renderDeleteButton(sh)}</td>
-                        {console.log(this.isUrgent(sh))}
                     </tr>
                )}
                </tbody>

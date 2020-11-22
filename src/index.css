@@ -32,6 +32,10 @@ code {
   margin: 0 auto;
 }
 
+.clickable {
+  cursor: pointer;
+}
+
 .cont {
   padding-top: 2%;
 }
